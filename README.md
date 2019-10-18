@@ -18,4 +18,4 @@ Cara menjalankan project
 7. "php artisan migrate" pada cmd untuk memberi table pada database
 8. Jalankan projectnya dengan cara "php artisan serve" pada cmd
 
-Nb : di pc harus terinsstal composer
+Nb : di pc harus terinstall composer
