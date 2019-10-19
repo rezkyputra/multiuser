@@ -10,7 +10,7 @@ class UserController extends Controller
     public function index()
     {
         $users = user::all();
-        return view('admin.user.index', compact('users'));
+        return view('user.user.index', compact('users'));
     }
 
     /**
@@ -20,7 +20,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view ('admin.user.create');
+        return view ('user.user.create');
     }
 
     /**
@@ -46,12 +46,12 @@ class UserController extends Controller
         ]);
 
     
-    return redirect('/admin/user');
+    return redirect('/user/user');
     }
 
     public function edit(user $user)
     {
-        return view('admin.user.edit',compact('user'));
+        return view('user.user.edit',compact('user'));
     }
 
     /**
@@ -74,7 +74,7 @@ class UserController extends Controller
         $user->role_id = $request->role_id;
         $user->save();
 
-        return redirect('/admin/user');
+        return redirect('/user/user');
     }
 
     /**
@@ -86,6 +86,6 @@ class UserController extends Controller
     public function destroy(user $user)
     {
         user::destroy($user->id);
-        return redirect('/admin/user');
+        return redirect('/user/user');
     }
 }

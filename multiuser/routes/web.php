@@ -19,13 +19,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['middleware' => ['web']], function () {
-    //
-});
+
 Route:: prefix('admin') -> group(function (){
     Route::get('/', function () {
         return view('admin.index');
-    });
+    })->middleware('auth');
     Route::resource('user', 'AdminController')->except([
         'show']);
     Route::get('/setting','SettingController@show');
@@ -40,7 +38,4 @@ Route:: prefix('user') -> group(function (){
         'show', 'edit', 'update']);
     Route::get('/setting','SettingController@show');
     Route::post('/setting/ubah','SettingController@change')->name('setting');
-
-    // Route:: resource('profile', 'ProfileController')->only([
-    //     'show', 'edit', 'update']);
 });

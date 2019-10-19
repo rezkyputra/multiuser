@@ -10,12 +10,12 @@
 Cara menjalankan project
 
 1. Clone/download dulu projectnya
-2. Install depedency dengan cara "composer install" pada cmd
-3. copy semua file .env.example ke .env dengan cara "cp .env.example .env" pada cmd
+2. Install depedency dengan cara "composer install" di folder multiuser manggunakan cmd
+3. copy semua file .env.example ke .env dengan cara "cp .env.example .env" di folder multiuser menggunakan cmd
 4. ubah setting database pada .env
 5. Buat database sesuai setting .env
 6. "php artisan key:generate" pada cmd untuk mendapatkan APP_KEY
-7. "php artisan migrate" pada cmd untuk memberi table pada database
+7. "php artisan migrate --seed" pada cmd untuk memberi table pada database dan meng-insert data didatabase
 8. Jalankan projectnya dengan cara "php artisan serve" pada cmd
 
 Nb : di pc harus terinstall composer
