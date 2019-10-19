@@ -17,5 +17,7 @@ Cara menjalankan project
 6. "php artisan key:generate" pada cmd untuk mendapatkan APP_KEY
 7. "php artisan migrate --seed" pada cmd untuk memberi table pada database dan meng-insert data didatabase
 8. Jalankan projectnya dengan cara "php artisan serve" pada cmd
+9. username = admin
+   password = 123456
 
 Nb : di pc harus terinstall composer
