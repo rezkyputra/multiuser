@@ -21,7 +21,7 @@ class SettingController extends Controller
 
         if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
             // The passwords matches
-            return redirect()->back()->with("error","Password lama tidak sama dengan password saat login");
+            return redirect()->back()->with("error","Password tidak sama dengan password saat login");
         }
 
         if(strcmp($request->get('current-password'), $request->get('new-password')) == 0){

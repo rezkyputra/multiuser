@@ -36,22 +36,27 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        $request -> all();
-        $new_user = new user();
-        $new_user-> username = $request->username;
-        $new_user-> email = $request->email;
-        $new_user-> password = bcrypt($request->password);
-        $new_user-> role_id = $request->role_id;
-        $new_user-> save();
+        $file=$request->file('image');
+        $ext=$file->getClientOriginalExtension();
+        $name=rand(100000,1001238912).".".$ext;
+        $file->move('img',$name);
+        $new_user=new user();
+        $new_user->username=$request->username;
+        $new_user->email=$request->email;
+        $new_user->password=bcrypt($request->password);
+        $new_user->role_id=$request->role_id;
+        $new_user->image=$name;
+        $new_user->save();
+        
+        return redirect('/admin/user')->with("success","Add Data successfully !");
 
         $validatedData = $request->validate([
             'username' => 'required|string',
             'password' => 'required|min:6|string',
             'email' => 'required|email',
+            'role_id' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
         ]);
-
-    
-    return redirect('/admin/user');
     }
 
     public function edit(user $user)
@@ -68,18 +73,30 @@ class AdminController extends Controller
      */
     public function update(Request $request,user $user)
     {
-        $validatedData = $request->validate([
-            'username' => 'required|string',
-            'email' => 'required|email',
-        ]);
-
         $user = user::find($user->id);
         $user->username = $request->username;
         $user->email = $request->email;
         $user->role_id = $request->role_id;
+        if (empty($request->file('image'))){
+            $user->image = $user->image;
+        }
+        else{
+            unlink('img/'.$user->image); //menghapus file lama
+            $file = $request->file('image');
+            $ext = $file->getClientOriginalExtension();
+            $newName = rand(100000,1001238912).".".$ext;
+            $file->move('img',$newName);
+            $user->image = $newName;
+        }
         $user->save();
+        return redirect('/admin/user')->with("success","Update Data successfully !");
 
-        return redirect('/admin/user');
+
+        $validatedData = $request->validate([
+            'username' => 'required|string',
+            'email' => 'required|email',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+        ]);
     }
 
     /**
@@ -90,7 +107,9 @@ class AdminController extends Controller
      */
     public function destroy(user $user)
     {
-        user::destroy($user->id);
-        return redirect('/admin/user');
+        $user=user::find($user->id);
+        unlink('img/'.$user->image);
+        $user->delete();
+        return redirect()->route('user.index')->with("success","Delete Data successfully !");
     }
 }

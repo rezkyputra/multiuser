@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use auth;
 use App\User;
 
 class UserController extends Controller
@@ -18,36 +19,6 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        return view ('user.user.create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $request -> all();
-        $new_user = new user();
-        $new_user-> username = $request->username;
-        $new_user-> email = $request->email;
-        $new_user-> password = bcrypt($request->get('password'));
-        $new_user-> role_id = $request->role_id;
-        $new_user-> save();
-
-        $validatedData = $request->validate([
-            'username' => 'required|string',
-            'email' => 'required|min:6|string',
-            'email' => 'required|email',
-        ]);
-
-    
-    return redirect('/user/user');
-    }
 
     public function edit(user $user)
     {

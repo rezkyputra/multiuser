@@ -31,7 +31,7 @@ Route:: prefix('admin') -> group(function (){
 });
 
 Route:: prefix('user') -> group(function (){
-    Route::get('', function () {
+    Route::get('/', function () {
         return view('user.index');    
     });
     Route::resource('user', 'UserController')->only([

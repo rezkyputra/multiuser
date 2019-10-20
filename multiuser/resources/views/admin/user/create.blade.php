@@ -1,15 +1,15 @@
 @extends('admin.layouts.app')
 
 @section('content')
-<div class="col-md-6 mx-auto my-3">  
+<div class="col-md-6 mx-auto my-3 border">  
     <h4 class="my-2 text-primary">Add Data</h4>
     <hr>
         <div class="container">
-            <form action="/admin/user" method="POST">
+            <form action="/admin/user" enctype="multipart/form-data" method="POST">
                 {{ csrf_field() }}
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Username</label>
-                    <input type="text" class="form-control" name="username" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Username" required>
+                    <label for="username">Username</label>
+                    <input type="text" value="{{ old('username') }}" class="form-control" name="username" id="username" aria-describedby="emailHelp" placeholder="Username" required>
                 </div>
                     @if ($errors->has('username'))
                         <span class="help-block">
@@ -27,7 +27,7 @@
                     @endif
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
+                    <input type="email" value="{{ old('email') }}" class="form-control" name="email" id="email" placeholder="Email" required>
                 </div>
                     @if ($errors->has('username'))
                         <span class="help-block">
@@ -42,7 +42,22 @@
                         <option value="1">User</option>
                     </select>
                 </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    @if ($errors->has('role_id'))
+                        <span class="help-block">
+                            <p class="text-danger" >{{ $errors->first('role_id') }}</p>
+                        </span>
+                    @endif
+                <div class="form-group">
+                    <label for="img">Image</label>
+                    <input id="img" type="file" name="image" class="form-control-file">
+                </div>
+                <hr>
+                    @if ($errors->has('image'))
+                        <span class="help-block">
+                            <p class="text-danger" >{{ $errors->first('image') }}</p>
+                        </span>
+                    @endif
+                    <button type="submit" class="btn btn-primary mb-2">Submit</button>
             </form>
         </div>
     </div>
