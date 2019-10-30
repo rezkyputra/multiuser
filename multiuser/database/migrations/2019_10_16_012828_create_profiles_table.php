@@ -15,12 +15,12 @@ class CreateProfilesTable extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_user')->nullable;
+            $table->integer('id_user')->unsigned();            
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
             $table->string('fullname');
             $table->enum('gender',['L','P']);
-            $table->integer('no_telp');
-            $table->string('Last_education');
-            $table->integer('expected_sallary');
+            $table->string('no_telp');
+            $table->string('expected_sallary');
             $table->text('address');
             $table->timestamps();
         });

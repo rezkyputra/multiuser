@@ -11,31 +11,32 @@
 |
 */
 
+// Route::get('/', function () {
+//     return view('auth.login');
+// });
+
+Auth::routes();
+
 Route::get('/', function () {
     return view('auth.login');
 });
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-
 Route:: prefix('admin') -> group(function (){
-    Route::get('/', function () {
-        return view('admin.index');
-    })->middleware('auth');
-    Route::resource('user', 'AdminController')->except([
-        'show']);
-    Route::get('/setting','SettingController@show');
-    Route::post('/setting/ubah','SettingController@change')->name('setting');
+    Route::resource('user', 'AdminController');
 });
 
-Route:: prefix('user') -> group(function (){
-    Route::get('/', function () {
-        return view('user.index');    
+Route::resource('profile', 'ProfileController')->only([
+'index', 'edit', 'update']);
+
+Route::get('/setting','SettingController@show');
+Route::post('/setting/ubah','SettingController@change')->name('setting');
+
+Route::group(['middleware' => ['web', 'auth']], function(){
+        Route::get('/dashboard', function(){
+            if (Auth::user()->role_id == 0){
+                return view('admin.index'); 
+            }else{
+                return view('user.index');
+            }
+        });
     });
-    Route::resource('user', 'UserController')->only([
-        'show', 'edit', 'update']);
-    Route::get('/setting','SettingController@show');
-    Route::post('/setting/ubah','SettingController@change')->name('setting');
-});

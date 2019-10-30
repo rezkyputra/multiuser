@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Profile;
+use auth;
 
 class AdminController extends Controller
-{
+{    
+    
     public function __construct()
     {
         $this->middleware('auth');
@@ -23,6 +26,11 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function show(user $user)
+    {
+        return view('admin.user.show', compact('user'));
+    }
+
     public function create()
     {
         return view ('admin.user.create');
@@ -41,8 +49,8 @@ class AdminController extends Controller
         $name=rand(100000,1001238912).".".$ext;
         $file->move('img',$name);
         $new_user=new user();
-        $new_user->username=$request->username;
-        $new_user->email=$request->email;
+        $new_user->username=$request->username;        
+        $new_user->email=$request->email;        
         $new_user->password=bcrypt($request->password);
         $new_user->role_id=$request->role_id;
         $new_user->image=$name;
@@ -53,16 +61,17 @@ class AdminController extends Controller
         $validatedData = $request->validate([
             'username' => 'required|string',
             'password' => 'required|min:6|string',
-            'email' => 'required|email',
+            'email' => 'required|email',            
             'role_id' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
         ]);
     }
-
+    
     public function edit(user $user)
     {
         return view('admin.user.edit',compact('user'));
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -108,7 +117,9 @@ class AdminController extends Controller
     public function destroy(user $user)
     {
         $user=user::find($user->id);
-        unlink('img/'.$user->image);
+        if(!empty($user->image)){            
+            unlink('img/'.$user->image);
+        }
         $user->delete();
         return redirect()->route('user.index')->with("success","Delete Data successfully !");
     }

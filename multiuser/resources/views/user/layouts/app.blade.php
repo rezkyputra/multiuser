@@ -28,7 +28,7 @@
       <div class="list-group list-group-flush">
         <img src="{{asset('img/'.Auth::user()->image)}}" style="width: 150px; height: 150px;" class="my-2 mx-auto rounded-circle" alt="">        
         <a href="/dashboard" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-        <a href="/admin/user" class="list-group-item list-group-item-action bg-light">Data User</a>
+        <a href="/profile" class="list-group-item list-group-item-action bg-light">Data Profile</a>
         <a href="/setting" class="list-group-item list-group-item-action bg-light">Ganti Password</a>
       </div>
     </div>

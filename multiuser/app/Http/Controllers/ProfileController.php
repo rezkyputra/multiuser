@@ -2,58 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\profile;
 use Illuminate\Http\Request;
+use App\User;
+use App\Profile;
+use auth;
 
 class ProfileController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+{    
+    
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        $profiles = profile::all();
-        return view('admin.profile.index', compact('profiles'));
+        $profile=user::find(auth::user()->id);
+        // dd($profile);
+        return view('user.profile.index', compact('profile'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view ('admin.profile.tambah');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $request -> all();
-        $new_profile = new profile();
-        $new_profile-> username = $request->username;
-        $new_profile-> email = $request->email;
-        $new_profile-> password = $request->password;
-        $new_profile-> role_id = $request->role_id;
-        $new_profile-> save();
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit(profile $profile)
     {
-        return view('admin.profile.edit',compact('profile'));
+        dd($profile);        
+        return view('user.profile.edit', compact('user'));
     }
 
     /**
@@ -63,27 +35,31 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, profile $profile)
+    public function update(Request $request,user $user)
     {
-        $new_profile = profile::find($profile->id);        
-        $new_profile-> username = $request->username;
-        $new_profile-> email = $request->email;
-        $new_profile-> password = $request->password;
-        $new_profile-> role_id = $request->role_id;
-        $new_profile->save();
+        $user = user::find($user->id);
+        $user->username = $request->username;
+        $user->email = $request->email;
+        $user->role_id = $request->role_id;
+        if (empty($request->file('image'))){
+            $user->image = $user->image;
+        }
+        else{
+            unlink('img/'.$user->image); //menghapus file lama
+            $file = $request->file('image');
+            $ext = $file->getClientOriginalExtension();
+            $newName = rand(100000,1001238912).".".$ext;
+            $file->move('img',$newName);
+            $user->image = $newName;
+        }
+        $user->save();
+        return redirect('/admin/user')->with("success","Update Data successfully !");
 
-        return redirect()->route('admin.profile.index');
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(profile $profile)
-    {
-        profile::destroy($profile->id);
-        return redirect()->route('admin.profile.index');
+        $validatedData = $request->validate([
+            'username' => 'required|string',
+            'email' => 'required|email',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+        ]);
     }
 }

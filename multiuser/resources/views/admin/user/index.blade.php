@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 @section('content')    
-<div class="col-md-9 mt-2 mx-auto border">
+<div class="col-md-9 mt-2 mx-auto border bg-light">
 <h4 class="mt-4 text-primary">Data User</h4>
 <hr>
     <div class="container">
@@ -12,7 +12,7 @@
                 </button>
             </div>
         @endif   
-        <a href="/admin/user/create" class="btn btn-info my-3">Tambah</a>
+        <a href="/admin/user/create" class="btn btn-info my-3">Add User</a>
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead>
@@ -38,10 +38,12 @@
                             User
                         @endif
                         </td>
-                        <td><img src="{{ url('img/'.$value -> image) }}" alt="" style="width: 150px; height: 150px;" ></td>
                         <td>
-                            <!-- <a href="/admin/profile/{{ $value->id }}" class="btn btn-info btn-xs">Show</a> -->
-                            <a href="/admin/user/{{ $value->id }}/edit" class="btn btn-success btn-sm mb-2">Update</a>
+                            <img src="{{ url('img/'.$value -> image) }}" alt="" style="width: 150px; height: 150px;" >
+                        </td>
+                        <td>
+                            <a href="/admin/user/{{ $value->id }}" class="btn btn-info btn-sm mb-1">Show</a>
+                            <a href="/admin/user/{{ $value->id }}/edit" class="btn btn-success btn-sm mb-1">Update</a>
                             <form action="/admin/user/{{ $value->id }}" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}

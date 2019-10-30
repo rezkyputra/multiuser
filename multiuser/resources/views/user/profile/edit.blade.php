@@ -1,11 +1,11 @@
-@extends('admin.layouts.app')
+@extends('user.layouts.app')
 
 @section('content')
 <div class="col-md-6 mx-auto my-3 border bg-light">  
     <h4 class="my-2 text-primary">Update Data</h4>
     <hr>
     <div class="container">
-        <form action="/admin/user/{{$user->id}}" enctype="multipart/form-data" method="POST">
+        <form action="profile/{{$user->id}}" enctype="multipart/form-data" method="POST">
             {{ csrf_field() }}
             {{ method_field('PATCH') }}
             <div class="form-group">
