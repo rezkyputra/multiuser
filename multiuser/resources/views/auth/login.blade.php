@@ -15,30 +15,31 @@
     <link href="{{asset('css/login.css')}}" rel="stylesheet">
   </head>
 
-  <body class="text-center bg-light">
+  <body class="text-center bg-light">    
     <form class="form-signin bg-success" method="POST" action="{{ route('login') }}">
     {{ csrf_field() }}
       <img class="mb-1" src="{{asset('img/user1.png')}}" alt="" width="70%">
       <h1 class="h3 mb-3 text-light font-weight-normal"> <b>LOGIN</b></h1>
-      <hr>      
+      <hr>
+      @if ($errors->has('username'))
+      <div class="alert alert-danger" role="alert">
+          {{ $errors->first('username') }}
+      </div>
+      @endif
+      @if ($errors->has('password'))
+        <div class="alert alert-danger" role="alert">
+            {{ $errors->first('password') }}
+        </div>
+      @endif      
       <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
       <label for="inputEmail" class="sr-only">Username</label>
       <input type="text" name="username" id="inputEmail" class="form-control my-1" placeholder="Username" value="{{ old('username') }}" required autofocus>
-        @if ($errors->has('username'))
-            <span class="help-block">
-                <p class="text-danger" >{{ $errors->first('username') }}</p>
-            </span>
-        @endif
+        
       </div>
 
       <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
       <label for="inputPassword" class="sr-only">Password</label>
       <input type="password" name="password" id="inputPassword" class="form-control my-1" placeholder="Password" required>
-        @if ($errors->has('password'))
-            <span class="help-block">
-                <p class="text-danger" >{{ $errors->first('password') }}</p>
-            </span>
-        @endif
       </div>
       
       <button class="btn btn-md btn-primary btn-block" type="submit">Sign in</button>

@@ -10,7 +10,7 @@
                 <img class="rounded rounded-circle mr-2 border" src="{{ asset('img/'.$profile->image) }}" alt="" style="width: 150px; height: 150px;">
             </div>
             <div class="col-6">
-            <h2 class="text-primary">Personal Details</h2>        
+            <b><h2 class="text-primary">Personal Details</h2></b>        
                 <table>
                     <tr>
                         <td>Username</td>
@@ -65,7 +65,9 @@
                     </tr>
                     @else
                     <tr>
-                        <td colspan="3"><h5 class="text-danger">Profile Belum di isi</h5></td>
+                        <td colspan="3" class="text-danger">
+                            <b>Profile belum diisi silahkan di update</b>
+                        </td>
                     </tr>
                     @endif            
                 </table>                

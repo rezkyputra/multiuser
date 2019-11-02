@@ -15,7 +15,7 @@ class user
      */
     public function handle($request, Closure $next)
     {
-        if(auth()->check() && $request->user()->role_id == 1) {
+        if(auth()->check() && $request->user()->role_id != 1) {
             return redirect('/dashboard');
         }
         return $next($request);

@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use Auth;
 use Hash;
-use Illuminate\Http\Request;
 
-class SettingController extends Controller
+class GantiController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('admin');
+        $this->middleware('user');
     }
 
     public function show(){
-        return view('admin.setting.changepassword');
+        return view('user.setting.changepassword');
     }
 
     public function change(Request $request){

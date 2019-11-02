@@ -19,7 +19,7 @@ Auth::routes();
 
 Route::get('/', function () {
     return view('auth.login');
-});
+})->middleware('web', 'guest');
 
 Route:: prefix('admin') -> group(function (){
     Route::resource('user', 'AdminController');
@@ -30,6 +30,9 @@ Route::resource('profile', 'ProfileController')->only([
 
 Route::get('/setting','SettingController@show');
 Route::post('/setting/ubah','SettingController@change')->name('setting');
+
+Route::get('/ganti','GantiController@show');
+Route::post('/ganti/ubah','GantiController@change')->name('ganti');
 
 Route::group(['middleware' => ['web', 'auth']], function(){
         Route::get('/dashboard', function(){

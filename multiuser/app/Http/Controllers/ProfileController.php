@@ -12,7 +12,8 @@ class ProfileController extends Controller
     
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth');        
+        $this->middleware('user');
     }
 
     public function index()
@@ -22,10 +23,10 @@ class ProfileController extends Controller
         return view('user.profile.index', compact('profile'));
     }
 
-    public function edit(profile $profile)
+    public function edit(user $profile)
     {
-        dd($profile);        
-        return view('user.profile.edit', compact('user'));
+        // dd($profile);        
+        return view('user.profile.edit', compact('profile'));
     }
 
     /**
@@ -58,6 +59,11 @@ class ProfileController extends Controller
 
         $validatedData = $request->validate([
             'username' => 'required|string',
+            'fullname' => 'required|string',
+            'gender' => 'required',
+            'no_telp' => 'required|integer',
+            'expected_sallary' => 'required|integer',
+            'address' => 'required|string',
             'email' => 'required|email',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
         ]);

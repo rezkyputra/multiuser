@@ -16,7 +16,7 @@
                 <p class="text-danger" >{{ $errors->first('username') }}</p>
             @endif
             <div class="form-group">
-                <label for="exampleInputPassword1">Email</label>
+                <label for="email">Email</label>
                 <input type="email" value="{{$user->email}}" class="form-control" name="email" id="email" placeholder="Email" required>
             </div>
             @if ($errors->has('email'))
