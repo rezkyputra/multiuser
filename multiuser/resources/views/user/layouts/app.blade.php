@@ -12,6 +12,7 @@
 
   <!-- Bootstrap core CSS -->
   <link href="{{asset('vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+  <link href="{{asset('vendor/fa/css/all.min.css')}}" rel="stylesheet">
 
   <!-- Custom styles for this template -->
   <link href="{{asset('css/simple-sidebar.css')}}" rel="stylesheet">
@@ -27,9 +28,9 @@
       <div class="sidebar-heading text-primary">MyResume</div>
       <div class="list-group list-group-flush">
         <img src="{{asset('img/'.Auth::user()->image)}}" style="width: 150px; height: 150px;" class="my-2 mx-auto rounded-circle" alt="">        
-        <a href="/dashboard" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-        <a href="/profile" class="list-group-item list-group-item-action bg-light">Data Profile</a>
-        <a href="/ganti" class="list-group-item list-group-item-action bg-light">Ganti Password</a>
+        <a href="/dashboard" class="list-group-item list-group-item-action bg-light"><i class="fas fa-home"></i> Dashboard</a>
+        <a href="/profile" class="list-group-item list-group-item-action bg-light"><i class="fas fa-user"></i> Data Profile</a>
+        <a href="/ganti" class="list-group-item list-group-item-action bg-light"><i class="fas fa-lock"></i> Ganti Password</a>
       </div>
     </div>
     <!-- /#sidebar-wrapper -->
@@ -38,7 +39,7 @@
     <div id="page-content-wrapper">
 
       <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-        <button class="btn btn-secondary" id="menu-toggle"><--</button>
+        <button class="btn btn-secondary" id="menu-toggle"><i class="fas fa-bars"></i></button>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>

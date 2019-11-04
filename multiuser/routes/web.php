@@ -26,7 +26,7 @@ Route:: prefix('admin') -> group(function (){
 });
 
 Route::resource('profile', 'ProfileController')->only([
-'index', 'edit', 'update']);
+'index', 'edit', 'update', 'store']);
 
 Route::get('/setting','SettingController@show');
 Route::post('/setting/ubah','SettingController@change')->name('setting');

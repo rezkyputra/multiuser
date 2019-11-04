@@ -1,9 +1,9 @@
 1. Menggunakan Template Bootstrap (ok)
-2. Terdapat fitur Login dengan 2 privilege (admin dan user)
+2. Terdapat fitur Login dengan 2 privilege (admin dan user) (ok)
 3. Login admin mempunyai fitur CRUD User, yang mana user yang dibuat oleh admin bisa login ke aplikasi (ok)
-4. Login user mempunyai fitur View dan Edit Profile dirinya termasuk untuk ganti password 
+4. Login user mempunyai fitur View dan Edit Profile dirinya termasuk untuk ganti password  (ok)
 5. Buatlah sebaik mungkin (informasi user kalau bisa terdapat fitur upload foto) (ok)
-6. Tambahkan informasi expected sallary kamu di aplikasi yang telah kamu buat
+6. Tambahkan informasi expected sallary kamu di aplikasi yang telah kamu buat (ok)
 7. Buatlah file readme.md yang berisi informasi cara menginstal aplikasi yang telah kamu buat (ok)
 8. Upload aplikasi kamu di github (ok)
 
@@ -19,9 +19,9 @@ Cara menjalankan project
 8. Jalankan projectnya dengan cara "php artisan serve" pada cmd
 9. untuk Admin <br>
 username = admin <br>
-password = 123456
-10.untuk user 
-username = rezky
-password = 123456
+password = 123456 <br>
+10. untuk user <br>
+username = rezky <br>
+password = 123456 <br>
 
 Nb : di pc harus terinstall composer

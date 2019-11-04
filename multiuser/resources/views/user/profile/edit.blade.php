@@ -17,7 +17,7 @@
             @endif
             <div class="form-group">
                 <label for="fullname">Fullname</label>
-                <input type="text" @if(!empty($profile->profile->fullname)) value="{{$profile->profile->fullname}}" @endif  class="form-control" name="fullname" id="fullname" placeholder="fullname" required>
+                <input type="text" value="{{$profile->profile->fullname}}" class="form-control" name="fullname" id="fullname" placeholder="fullname" required>
             </div>
             @if ($errors->has('fullname'))
                 <p class="text-danger" >{{ $errors->first('fullname') }}</p>
@@ -32,11 +32,7 @@
             <div class="form-group">
                 <label for="gender">Gender</label>
                 <select class="form-control" name="gender" id="gender" required>
-                    <option value="">-</option>
-                    <option value="0">Laki-laki</option>
-                    <option value="1">Perempuan</option>   
-                @if (!empty($profile->profile->gender))
-                    @if ($profile->profile->gender == L)
+                    @if ($profile->profile->gender == "L")
                         <option value="">-</option>
                         <option value="0" selected>Laki-laki</option>
                         <option value="1">Perempuan</option>                          
@@ -45,7 +41,6 @@
                         <option value="0">Laki-laki</option>
                         <option value="1" selected>Perempuan</option>
                     @endif
-                @endif
                 </select>
             </div>                      
             @if ($errors->has('gender'))
@@ -53,21 +48,21 @@
             @endif
             <div class="form-group">
                 <label for="no_telp">Phone</label>
-                <input type="number" @if(!empty($profile->profile->no_telp)) value="{{$profile->profile->no_telp}}" @endif class="form-control" name="no_telp" id="no_telp" required>
+                <input type="number" value="{{$profile->profile->no_telp}}" class="form-control" name="no_telp" id="no_telp" required>
             </div>
             @if ($errors->has('no_telp'))
                 <p class="text-danger" >{{ $errors->first('no_telp') }}</p>
             @endif
             <div class="form-group">
                 <label for="expected_sallary">Expected Sallary</label>
-                <input type="number" @if(!empty($profile->profile->expected_sallary)) value="{{$profile->profile->expected_sallary}}" @endif class="form-control" name="expected_sallary" id="expected_sallary" required>
+                <input type="number"value="{{$profile->profile->expected_sallary}}" class="form-control" name="expected_sallary" id="expected_sallary" required>
             </div>
             @if ($errors->has('expected_sallary'))
                 <p class="text-danger" >{{ $errors->first('expected_sallary') }}</p>
             @endif
             <div class="form-group">
                 <label for="address">Address</label>
-                <textarea class="form-control" id="address" rows="3" name="address">@if(!empty($profile->profile->expected_sallary)) {{$profile->profile->address}} @endif</textarea>
+                <textarea class="form-control" id="address" rows="3" name="address">{{$profile->profile->address}}</textarea>
             </div>
             @if ($errors->has('address'))
                 <p class="text-danger" >{{ $errors->first('address') }}</p>
