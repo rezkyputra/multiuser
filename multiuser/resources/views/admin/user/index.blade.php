@@ -12,7 +12,7 @@
                 </button>
             </div>
         @endif   
-        <a href="/admin/user/create" class="btn btn-info my-3">Add User</a>
+        <a href="/admin/user/create" class="btn btn-primary my-3"><i class="fas fa-plus"></i> Add User</a>
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead>
@@ -42,12 +42,12 @@
                             <img src="{{ url('img/'.$value -> image) }}" alt="" style="width: 150px; height: 150px;" >
                         </td>
                         <td>
-                            <a href="/admin/user/{{ $value->id }}" class="btn btn-info btn-sm mb-1">Show</a>
-                            <a href="/admin/user/{{ $value->id }}/edit" class="btn btn-success btn-sm mb-1">Update</a>
+                            <a href="/admin/user/{{ $value->id }}" class="btn btn-secondary btn-sm mb-1"><i class="fas fa-id-card"></i></a>
+                            <a href="/admin/user/{{ $value->id }}/edit" class="btn btn-info btn-sm mb-1"><i class="fas fa-edit"></i></a>
                             <form action="/admin/user/{{ $value->id }}" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
-                                <input type="submit" value="Delete" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete?')">
+                                <button class="btn btn-danger btn-sm" type="submit" onclick="return confirm('Are you sure you want to delete?')"><i class="fas fa-trash"></i></button>
                             </form>
                         </td>
                     </tr>

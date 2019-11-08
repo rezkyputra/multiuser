@@ -5,12 +5,12 @@
     <h4 class="my-2 text-primary">Update Data</h4>
     <hr>
     <div class="container">
-        <form action="profile/{{$profile->id}}" enctype="multipart/form-data" method="POST">
+        <form action="/profile/{{$profile->id}}" enctype="multipart/form-data" method="POST">
             {{ csrf_field() }}
             {{ method_field('PATCH') }}
             <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" value="{{$profile->username}}" class="form-control" name="username" id="username" placeholder="Username" required autofocus>
+                <input type="text" value="{{$profile->username}}" class="form-control" name="username" id="username" placeholder="Username" required>
             </div>
             @if ($errors->has('username'))
                 <p class="text-danger" >{{ $errors->first('username') }}</p>
@@ -34,12 +34,12 @@
                 <select class="form-control" name="gender" id="gender" required>
                     @if ($profile->profile->gender == "L")
                         <option value="">-</option>
-                        <option value="0" selected>Laki-laki</option>
-                        <option value="1">Perempuan</option>                          
+                        <option value="L" selected>Laki-laki</option>
+                        <option value="P">Perempuan</option>                          
                     @else
                         <option value="">-</option>
-                        <option value="0">Laki-laki</option>
-                        <option value="1" selected>Perempuan</option>
+                        <option value="L">Laki-laki</option>
+                        <option value="P" selected>Perempuan</option>
                     @endif
                 </select>
             </div>                      

@@ -7,12 +7,12 @@
     <div class="container my-2">
         <div class="row">        
             <div class="col-3">
-                <img class="rounded mr-2 border" src="{{ asset('img/'.$user->image) }}" alt="" style="width: 150px; height: 150px;">
+                <img class="rounded rounded-circle mr-2 border" src="{{ asset('img/'.$user->image) }}" alt="" style="width: 150px; height: 150px;">
             </div>
             <div class="col-9">
             <h3 class="text-primary"><b>Personal Details</b></h3>        
-                <table>                
-                <tr>
+                <table style="width:100%; font-size: 18px;" class="text-secondary">                
+                    <tr>
                         <td>Username</td>
                         <td> : </td>
                         <td>{{$user->username}}</td>
@@ -59,7 +59,7 @@
                         <td> {{$user->profile->expected_sallary}} </td>                
                     </tr>
                     <tr>
-                        <td>Addres</td>
+                        <td>Address</td>
                         <td> : </td>
                         <td> {{$user->profile->address}} </td>                
                     </tr>

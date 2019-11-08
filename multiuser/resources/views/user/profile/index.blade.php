@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="col-md-9 mx-auto my-3 border bg-light">  
-    <h4 class="my-2 text-primary">Profile</h4>
+    <h4 class="my-2 text-primary"> <b>PROFILE</b></h4>
     <hr>
     @if (session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -18,8 +18,8 @@
                 <img class="rounded rounded-circle mr-2 border" src="{{ asset('img/'.$profile->image) }}" alt="" style="width: 150px; height: 150px;">
             </div>
             <div class="col-md-8">
-            <b><h2 class="text-primary">Personal Details</h2></b>        
-                <table style="width:100%; font-size: 17px;" class="text-secondary">
+            <h2 class="text-primary"><b>Personal Details</b></h2>        
+                <table style="width:100%; font-size: 18px;" class="text-secondary">
                     <tr>
                         <td>Username</td>
                         <td> : </td>
@@ -70,13 +70,14 @@
                         </td>
                     </tr>
                     @endif            
-                </table>                
-            </div>
-        </div>
-        @include('user.profile.create')
-        @if(!empty($profile->profile))
-        <a href="/profile/{{$profile->id}}/edit" class="btn btn-primary my-2">Update</a>
-        @endif
+                </table>            
+            </div> 
+        </div>    
+            @include('user.profile.create')
+            @if(!empty($profile->profile))
+                <a href="/profile/{{$profile->id}}/edit" class="btn btn-primary btn-lg my-1 rounded-circle"> <i class="fas fa-edit"></i></a>
+            @endif                  
+        <hr/> 
     </div>
 </div>
 @endsection

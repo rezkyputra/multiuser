@@ -20,15 +20,21 @@
     {{ csrf_field() }}
       <img class="mb-1" src="{{asset('img/user1.png')}}" alt="" width="70%">
       <h1 class="h3 mb-3 text-light font-weight-normal"> <b>LOGIN</b></h1>
-      <hr>
+      <hr>      
       @if ($errors->has('username'))
-      <div class="alert alert-danger" role="alert">
-          {{ $errors->first('username') }}
-      </div>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">      
+        {{ $errors->first('username') }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
       @endif
       @if ($errors->has('password'))
-        <div class="alert alert-danger" role="alert">
-            {{ $errors->first('password') }}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">      
+        {{ $errors->first('password') }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
       @endif      
       <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
@@ -44,5 +50,7 @@
       
       <button class="btn btn-md btn-primary btn-block" type="submit">Sign in</button>
     </form>
-  </body>
+  </body>  
+  <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
+  <script src="{{asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 </html>
